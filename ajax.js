@@ -1,6 +1,6 @@
 /**
 https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
-
+https://segmentfault.com/a/1190000004322487
 */
 (
   function() {
