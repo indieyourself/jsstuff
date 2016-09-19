@@ -1,13 +1,23 @@
 'use strict'
 
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
 
-var url = 'mongodb://localhost:27017/test';
+var mongoDB;
 
-MongoClient.connect(url, function(err, db) {
-	assert.equal(null, err);
-	console.log("Connected successfully to server");
+MongoClient.connect("mongodb://192.168.10.87:27017/test", function(err, db) {
+	if ( !err) {
+		console.log("mongodb connection error");
+		return -1;
+	};
 
-	db.close();
+	mongoDB = db;
 });
+
+mongoDB.collection('user').insertOne(
+		{ "name": "x-one" },
+		function(err, result) {
+			console.log(result);
+		}
+	)
+}
+
