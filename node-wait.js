@@ -13,12 +13,14 @@ function Producer( options ) {
 }
 
 Producer.prototype.init = function() {
+	this.socket.on('end', function () {
+                console.log('Kafka server has closed connection');
+        });
+
 	this.socket.connect( this.options.port, this.options.host , function() {
 		console.log("connected");
 	});
 }
-
-
 
 const producer = new Producer( { host: '192.168.10.87', port: 9092 } );
 

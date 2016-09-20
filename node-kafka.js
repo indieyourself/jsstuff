@@ -21,7 +21,7 @@ return producer.init().then( function() {
 } )
 .then( function(result) {
 	console.log(result);
-})
+});
 
 
 
