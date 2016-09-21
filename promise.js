@@ -15,8 +15,8 @@ promise.then(
 		console.log("resolve");
 	},
 
-	function() {
-		console.log("reject");
+	function(reason) {
+		console.log("reject", reason);
 	}
 );
 

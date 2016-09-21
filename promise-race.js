@@ -14,8 +14,8 @@ Promise.race([p1, p2]).then(
 		console.log(value);
 	},
 
-	function(value) {
-		console.log("error ", value);
+	function(reason) {
+		console.log("error ", reason);
 	}
 );
 

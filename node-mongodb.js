@@ -26,11 +26,11 @@ function connect( url ) {
 		function(resolve, reject) {
 			MongoClient.connect(url, function(err, db) {
 				if ( err !== null ) {
-					promise.reject(db);
+					reject();
 				} else {
-					promise.resolve(db);
+					resolve(db);
 				}
-			}
+			});
 		});
 	return promise;
 }
@@ -39,9 +39,9 @@ connect( "mongodb://192.168.10.87:27017/test" ).then(
 	function(db) {
 		console.log("promise mongodb connect success");
 
-		mongoDB = db;
+		mongoDBPromise = db;
 
-		mongoDB.collection('user').insertOne(
+		mongoDBPromise.collection('user').insertOne(
 			{ "name": "x-one" },
 			function(err, result) {
 				console.log(result);
@@ -49,8 +49,8 @@ connect( "mongodb://192.168.10.87:27017/test" ).then(
 		);
 	},
 	
-	function(db) {
-		console.log("promise mongodb connect error");
+	function(reason) {
+		console.log("promise mongodb connect error", reason);
 	}
 )
 
