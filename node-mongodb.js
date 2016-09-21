@@ -3,6 +3,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
 var mongoDB;
+var mongoDBPromise;
 
 MongoClient.connect("mongodb://192.168.10.87:27017/test", function(err, db) {
 	if ( err !== null ) {
@@ -20,5 +21,36 @@ MongoClient.connect("mongodb://192.168.10.87:27017/test", function(err, db) {
 	);
 });
 
+function connect( url ) {
+	var promise = new Promise(
+		function(resolve, reject) {
+			MongoClient.connect(url, function(err, db) {
+				if ( err !== null ) {
+					promise.reject(db);
+				} else {
+					promise.resolve(db);
+				}
+			}
+		});
+	return promise;
+}
 
+connect( "mongodb://192.168.10.87:27017/test" ).then(
+	function(db) {
+		console.log("promise mongodb connect success");
+
+		mongoDB = db;
+
+		mongoDB.collection('user').insertOne(
+			{ "name": "x-one" },
+			function(err, result) {
+				console.log(result);
+			}
+		);
+	},
+	
+	function(db) {
+		console.log("promise mongodb connect error");
+	}
+)
 
