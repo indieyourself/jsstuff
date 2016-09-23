@@ -1,12 +1,15 @@
 (function() {
 	const greeting = "Hello";
 	var name = "stonewf";
+	var count = 1;
 
 	function sayHi( ) {
-		console.log(`${greeting} ${name}`);
+		console.log(`${greeting} ${name} ${count}`);
+		++count;
 	}
 
 	sayHi();
+	sayHi()
 }());
 
 /****
