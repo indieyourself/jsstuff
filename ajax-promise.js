@@ -23,18 +23,6 @@
             var uri = url;
             var args = self.formatArgs(self.args);
 
-            if (method === 'GET') {
-              if (args !== "") {
-                client.open(method, uri + "?" + args);  
-              } else {
-                client.open(method, uri);
-              }
-              client.send();
-            } else {
-              client.open(method, uri);
-              client.send(args);
-            }
-
             client.onload = function() {
               if (this.status >= 200 && this.status < 300) {
                 // Performs the function "resolve" when this.status is equal to 2xx
@@ -48,6 +36,18 @@
             client.onerror = function() {
               reject(this.statusText);
             };
+
+            if (method === 'GET') {
+              if (args !== "") {
+                client.open(method, uri + "?" + args);  
+              } else {
+                client.open(method, uri);
+              }
+              client.send();
+            } else {
+              client.open(method, uri);
+              client.send(args);
+            }
           });
 
           return promise;

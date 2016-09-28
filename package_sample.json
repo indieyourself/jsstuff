@@ -1,6 +1,6 @@
 {
 	"name" : "JSSTUFF",
-	"version" : "1.0",
+	"version" : "1.0.0",
 	"dependencies" : {
 		"no-kafka": "2.8.x",
 		"mongodb": "2.2.x"
