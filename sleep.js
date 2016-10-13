@@ -7,4 +7,8 @@ function sleep (time) {
 // Usage!
 sleep(500).then(() => {
     // Do something after the sleep!
+
+    console.log("time flows.....");
 })
+
+console.log("sleeping......");
