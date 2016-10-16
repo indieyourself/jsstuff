@@ -18,11 +18,18 @@ function resolve() {
 	throw new  Error("Throwing");
 }
 
+function resolve2() {
+	console.log("resolve2");
+}
+function reject2( e ) {
+	console.log("reject2: ", e);
+}
+
 function reject( e ) {
 	console.log(e);
 }
 
 //promise.then( resolve, reject ).then(resolve, reject);
 
-promise.then( resolve, reject ).catch( reject);
-
+promise.then( resolve, reject ).then(resolve2, reject2).catch( reject);
+promise.then( resolve, reject ).then(resolve2).catch( reject);
